@@ -1,0 +1,9 @@
+[Unit]
+Description=Waitress instance to serve vPdfAntiAntiPlagio
+
+[Service]
+ExecStartPre=-/usr/bin/bash -c 'mkdir -p /run/waitress; chown http:http /run/waitress'
+ExecStart=vPdfAntiAntiPlagioWSGI
+
+[Install]
+WantedBy=multi-user.target
