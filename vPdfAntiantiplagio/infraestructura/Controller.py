@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import logging
 from pdf2image import convert_from_path, convert_from_bytes
 from pdf2image.exceptions import (
     PDFInfoNotInstalledError,
@@ -7,7 +8,6 @@ from pdf2image.exceptions import (
 )
 from PyPDF2 import PdfFileReader
 from ..aplicacion import Aplicacion
-
 class Controller():
     def __init__(self,ui_type):
         app = None
@@ -27,7 +27,7 @@ class Controller():
 
     def setPaginas(self, paginas):
         if self.app.setPaginasAProcesar(paginas):
-            print("paginas seleccionada de forma correcta")
+            logging.info("paginas seleccionada de forma correcta")
 
     
     def getInfoPDF(self):
@@ -45,7 +45,7 @@ class Controller():
     def save_output(self):
         paginas_imagenes = self.getPaginas()
         self.images[0].save(self.out, save_all=True, append_images=paginas_imagenes)
-        print("Proceso Exitoso")
+        logging.info("Proceso Exitoso")
 
     def getImages(self):
         images = convert_from_path(self.app.getPdfAProcesar())

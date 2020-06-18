@@ -11,19 +11,19 @@ with open('README.md', 'r', encoding='utf-8') as f:
 
 requirements = parse_requirements("./requirements.txt", session=False)
 
-setup(name='vPdfAntiantiplagio',
-      version="0.4.1",
+setup(name='vPdfAntiAntiPlagio',
+      version="0.5.1",
       description='Aplicacion anti anti plagio',
       long_description=readme,
       long_description_content_type="text/markdown",
       author='Valdr Stiglitz',
       author_email='valdr.stiglitz@gmail.com',
       url='https://github.com/ValdrST/V_pdf_Antiantiplagio',
-      packages=set(['vPdfAntiantiplagio','vPdfAntiantiplagio.aplicacion','vPdfAntiantiplagio.infraestructura', 'vPdfAntiantiplagio.dominio']),
+      packages=set(['vPdfAntiAntiPlagio','vPdfAntiAntiPlagio.aplicacion','vPdfAntiAntiPlagio.infraestructura', 'vPdfAntiAntiPlagio.dominio']),
       include_package_data=True,
       install_requires=[str(requirement.req) for requirement in requirements],
       entry_points={
-          'console_scripts': ['vPdfAntiantiplagio = vPdfAntiantiplagio:main']
+          'console_scripts': ['vPdfAntiAntiPlagio = vPdfAntiAntiPlagio:main','vPdfAntiAntiPlagioWSGI = vPdfAntiAntiPlagio:wsgi']
       },
       classifiers=[
           'Programming Language :: Python :: 3',
