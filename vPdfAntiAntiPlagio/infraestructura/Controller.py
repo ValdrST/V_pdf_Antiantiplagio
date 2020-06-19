@@ -51,3 +51,5 @@ class Controller():
         images = convert_from_path(self.app.getPdfAProcesar())
         return images
         images[0].save(self.out, save_all=True, append_images=images[1:])
+
+    
