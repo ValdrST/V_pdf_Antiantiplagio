@@ -20,7 +20,7 @@ class Aplicacion():
         info = self.PDFAntiantiplagio_c.getInfo()
         info["nombre"] = self.pathName
         return info
-
+        
     def setPaginasAProcesar(self,paginas):
         return self.PDFAntiantiplagio_c.setPaginasSeleccionadas(paginas)
 
