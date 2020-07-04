@@ -6,6 +6,7 @@ from pdf2image.exceptions import (
     PDFPageCountError,
     PDFSyntaxError
 )
+from os import path
 from PyPDF2 import PdfFileReader
 from ..aplicacion import Aplicacion
 class Controller():
@@ -17,7 +18,11 @@ class Controller():
         images = None
     
     def setOutFile(self, outFile):
-        self.out = outFile
+        if self.isPdf(outFile):
+            self.out = outFile
+        else:
+            logging.error("Extensión no valida")
+            raise Exception
 
     def setInputFile(self, inputFile):
         self.pdf = PdfFileReader(open(inputFile,'rb'))
@@ -33,6 +38,9 @@ class Controller():
     def getInfoPDF(self):
         return self.app.getInfo()
 
+    def isPdf(self, outFile):
+        archivo, ext = path.splitext(outFile)
+        return  ext == ".pdf"
 
     def getPaginas(self):
         self.images = self.getImages()
@@ -51,3 +59,5 @@ class Controller():
         images = convert_from_path(self.app.getPdfAProcesar())
         return images
         images[0].save(self.out, save_all=True, append_images=images[1:])
+
+    

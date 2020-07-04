@@ -4,7 +4,6 @@ import logging
 from .Controller import Controller
 from .Server import Server
 
-logging.basicConfig(level=logging.DEBUG)
 class Console(object):
     def __init__(self):
         self.parser = argparse.ArgumentParser()
@@ -24,17 +23,21 @@ class Console(object):
         self.argumentParse()
         if self.args.cli:
             controller = Controller("console")
-            controller.setInputFile(self.args.input)
-            controller.setOutFile(self.args.out)
-            print(controller.getInfoPDF())
-            print("¿Cuales paginas deseas convertir?")
-            print("Escrbir numero separado por ,")
-            print("Si deseas convertir todas solo pulsa enter")
-            paginas = input("")
-            if(paginas != ""):
-                paginas = paginas.split(",")
-            controller.setPaginas(paginas)
-            controller.save_output()
+            try:
+                controller.setInputFile(self.args.input)
+                controller.setOutFile(self.args.out)
+                print(controller.getInfoPDF())
+                print("¿Cuales paginas deseas convertir?")
+                print("Escrbir numero separado por ,")
+                print("Si deseas convertir todas solo pulsa enter")
+                paginas = input("")
+                if(paginas != ""):
+                    paginas = paginas.split(",")
+                controller.setPaginas(paginas)
+                controller.save_output()
+            except Exception:
+                logging.error(Exception)
+
         elif self.args.ws:
             server = Server("vPdfAntiAntiPlagio")
             server.app.run(host=self.args.host,port=self.args.port,debug=self.args.debug)

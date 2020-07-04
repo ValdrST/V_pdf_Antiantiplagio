@@ -12,7 +12,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
 requirements = parse_requirements("./requirements.txt", session=False)
 
 setup(name='vPdfAntiAntiPlagio',
-      version="0.5.2",
+      version="0.5.5",
       description='Aplicacion anti anti plagio',
       long_description=readme,
       long_description_content_type="text/markdown",
