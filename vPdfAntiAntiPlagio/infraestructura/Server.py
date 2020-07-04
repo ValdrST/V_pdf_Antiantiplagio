@@ -10,10 +10,10 @@ class Server():
         self.app = Flask(name)
         self.app.register_blueprint(server_report)
 
-@server_report.route('/vPdfAntiAntiPlagio',methods=['GET'])
+@server_report.route('/ws/vPdfAntiAntiPlagio',methods=['GET'])
 def index():
     return "<h1>vPdfAntiAntiPlagio</h1>"
 
-@server_report.route('/vPdfAntiAntiPlagio/procesar_documento',methods=['POST'])
+@server_report.route('/ws/PdfAntiAntiPlagio/procesar_documento',methods=['POST'])
 def procesar_documento():
     return "<h1>procesar documento</h1>"
