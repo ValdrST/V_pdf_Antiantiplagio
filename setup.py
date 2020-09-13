@@ -4,7 +4,7 @@ try:  # for pip >= 10
     from pip._internal.req import parse_requirements
 except ImportError:  # for pip <= 9.0.3
     from pip.req import parse_requirements
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open('README.md', 'r', encoding='utf-8') as f:
     readme = f.read()
@@ -19,9 +19,9 @@ setup(name='vPdfAntiAntiPlagio',
       author='Valdr Stiglitz',
       author_email='valdr.stiglitz@gmail.com',
       url='https://github.com/ValdrST/V_pdf_Antiantiplagio',
-      packages=set(['vPdfAntiAntiPlagio','vPdfAntiAntiPlagio.aplicacion','vPdfAntiAntiPlagio.infraestructura', 'vPdfAntiAntiPlagio.dominio']),
+      packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
       include_package_data=True,
-      install_requires=[str(requirement.req) for requirement in requirements],
+      install_requires=[i.strip() for i in open("./requirements.txt").readlines()],
       entry_points={
           'console_scripts': ['vPdfAntiAntiPlagio = vPdfAntiAntiPlagio:main','vPdfAntiAntiPlagioWSGI = vPdfAntiAntiPlagio:wsgi']
       },
